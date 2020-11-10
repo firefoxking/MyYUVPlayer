@@ -10,6 +10,7 @@
 
 #include "MyYUVPlayerDoc.h"
 #include "MyYUVPlayerView.h"
+#include "YUVPlayerDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -98,6 +99,8 @@ BOOL CMyYUVPlayerApp::InitInstance()
 
 	// 注册应用程序的文档模板。  文档模板
 	// 将用作文档、框架窗口和视图之间的连接
+
+	/*-------------------------原始单文档项目------------------
 	CSingleDocTemplate* pDocTemplate;
 	pDocTemplate = new CSingleDocTemplate(
 		IDR_MAINFRAME,
@@ -123,7 +126,25 @@ BOOL CMyYUVPlayerApp::InitInstance()
 	// 唯一的一个窗口已初始化，因此显示它并对其进行更新
 	m_pMainWnd->ShowWindow(SW_SHOW);
 	m_pMainWnd->UpdateWindow();
-	return TRUE;
+	--------------------------------------------*/
+
+	CYUVPlayerDlg dlg;
+	m_pMainWnd = &dlg;
+	INT_PTR nResponse = dlg.DoModal();
+	if (nResponse == IDOK)
+	{
+		//TODO:在此放置处理何时用
+		//“确定”来关闭对话框的代码
+	}
+	else if (nResponse == IDCANCEL)
+	{
+		//TODO:在此放置处理何时用
+		//“取消”来关闭对话框的代码
+	}
+
+	// 由于对话框已关闭，所以将返回 FALSE 以便退出应用程序，
+	//  而不是启动应用程序的消息泵。
+	return FALSE;
 }
 
 int CMyYUVPlayerApp::ExitInstance()
